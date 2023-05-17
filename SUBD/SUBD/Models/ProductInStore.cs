@@ -22,7 +22,7 @@ namespace SUBD.Models
 		/// </summary>
 		[Required]
 		public int ProductId { get; set; }
-		public virtual Store StoreStore { get; set; } = new();
+		public virtual Store Store { get; set; } = new();
 		public virtual Product Product { get; set; } = new();
 		[ForeignKey("ProductInStoreId")]
 		public virtual List<Sale> Sales { get; set; } = new();
