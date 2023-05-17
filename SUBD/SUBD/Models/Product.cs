@@ -19,7 +19,7 @@ namespace SUBD.Models
 		/// Цена продукта
 		/// </summary>
 		[Required, Column(TypeName ="decimal(10,2)")]
-		public double Price { get; set; }
+		public decimal Price { get; set; }
 		[ForeignKey("ProductId")]
 		public virtual List<ProductInStore> ProductsInStore { get; set; } = new();
 	}

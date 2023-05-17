@@ -22,6 +22,33 @@
 					case "Список магазинов":
 						DbWorker.GetStores();
 						break;
+					case "Добавить продукт":
+						DbWorker.AddProduct();
+						break;
+					case "Добавить продукт в магазин":
+						DbWorker.AddProductInStore();
+						break;
+					case "Добавить магазин":
+						DbWorker.AddStore();
+						break;
+					case "Добавить продажу":
+						DbWorker.AddSale();
+						break;
+					case "Обновить продукт":
+						DbWorker.UpdateProduct();
+						break;
+					case "Обновить магазин":
+						DbWorker.UpdateStore();
+						break;
+					case "Удалить продукт":
+						DbWorker.DeleteProduct();
+						break;
+					case "Удалить магазин":
+						DbWorker.DeleteStore();
+						break;
+					case "ТестУдалить":
+						DbWorker.Truncate();
+						break;
 					default:
 						Console.WriteLine("Неверный ввод");
 						break;

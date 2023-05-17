@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace SUBD.Migrations
 {
     /// <inheritdoc />
-    public partial class InitMigration : Migration
+    public partial class Fix : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,7 @@ namespace SUBD.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    Price = table.Column<double>(type: "numeric(10,2)", nullable: false)
+                    Price = table.Column<decimal>(type: "numeric(10,2)", nullable: false)
                 },
                 constraints: table =>
                 {

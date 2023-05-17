@@ -10,11 +10,6 @@ namespace SUBD.Models
 		[Key]
 		public int Id { get; set; }
 		/// <summary>
-		/// Дата продажи
-		/// </summary>
-		[Required]
-		public DateTime Date { get; set; } = DateTime.Now;
-		/// <summary>
 		/// Количество проданных продуктов
 		/// </summary>
 		[Required]

@@ -12,8 +12,8 @@ using SUBD;
 namespace SUBD.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230517160302_FixStoreNameMigration")]
-    partial class FixStoreNameMigration
+    [Migration("20230517171341_Fix")]
+    partial class Fix
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,7 +37,7 @@ namespace SUBD.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<double>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
