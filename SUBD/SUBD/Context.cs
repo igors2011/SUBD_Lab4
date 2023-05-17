@@ -17,7 +17,8 @@ namespace SUBD
 		public virtual DbSet<Product> Products { get; set; }
 		public virtual DbSet<ProductInStore> ProductsInStore { get; set; }
 		public virtual DbSet<Store>	Stores { get; set; }
+		public virtual DbSet<Sale> Sales { get; set; }
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseNpgsql("Host=192.168.56.101;Port=5432;Database=subdabs;Username=postgres;Password=1");
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseNpgsql("Host=192.168.56.101;Port=5432;Database=subshopnoindex;Username=postgres;Password=1");
 	}
 }

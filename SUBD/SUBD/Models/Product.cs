@@ -5,9 +5,21 @@ namespace SUBD.Models
 {
 	public class Product
 	{
+		/// <summary>
+		/// Номер продукта
+		/// </summary>
+		[Key]
 		public int Id { get; set; }
+		/// <summary>
+		/// Название продукта
+		/// </summary>
 		[Required]
-		public string Name { get; set; } = string.Empty;
+		public string Name { get; set; } = "[Неизвестный продукт]";
+		/// <summary>
+		/// Цена продукта
+		/// </summary>
+		[Required, Column(TypeName ="decimal(10,2)")]
+		public double Price { get; set; }
 		[ForeignKey("ProductId")]
 		public virtual List<ProductInStore> ProductsInStore { get; set; } = new();
 	}
