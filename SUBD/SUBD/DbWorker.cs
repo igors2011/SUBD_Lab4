@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SUBD.Models;
+using System.Diagnostics;
 
 namespace SUBD
 {
@@ -295,9 +296,78 @@ namespace SUBD
 			context.Stores.RemoveRange(context.Stores);
 			Console.WriteLine("База данных очищена");
 		}
-		public static void TestInsert()
+		//Для теста будем использовать сущность "Продукт в магазине"
+		public static void TestCreate()
 		{
-
+			Random r = new();
+			using Context context = new();
+			var products = context.Products.ToList();
+			var stores = context.Stores.ToList();
+			List<ProductInStore> productInStores = new();
+			for (int i = 0; i < 1000; i++)
+			{
+				var newProductInStore = new ProductInStore()
+				{
+					Product = products[r.Next(products.Count)],
+					Store = stores[r.Next(stores.Count)],
+					Count = r.Next(1000)
+				};
+				productInStores.Add(newProductInStore);
+			}
+			Stopwatch stopwatch = new();
+			stopwatch.Start();
+			context.ProductsInStore.AddRange(productInStores);
+			context.SaveChanges();
+			stopwatch.Stop();
+			Console.WriteLine($"Вставка завершена. Времени затрачено: {stopwatch.Elapsed.TotalMilliseconds} мс");
+		}
+		public static void TestRead()
+		{
+			using Context context = new();
+			Stopwatch stopwatch = new();
+			stopwatch.Start();
+			var products = context.Products.ToList();
+			stopwatch.Stop();
+			Console.WriteLine($"Чтение завершено. Времени затрачено: {stopwatch.Elapsed.TotalMilliseconds} мс");
+		}
+		public static void TestUpdate()
+		{
+			using Context context = new();
+			Random r = new();
+			List<ProductInStore> productInStores = context.ProductsInStore.ToList();
+			foreach (var product in productInStores)
+			{
+				product.Count = r.Next(1000);
+			}
+			Stopwatch stopwatch = new();
+			stopwatch.Start();
+			context.ProductsInStore.UpdateRange(productInStores);
+			context.SaveChanges();
+			stopwatch.Stop();
+			Console.WriteLine($"Обновление завершено. Времени затрачено: {stopwatch.Elapsed.TotalMilliseconds} мс");
+		}
+		public static void TestDelete()
+		{
+			using Context context = new();
+			Random r = new();
+			List<ProductInStore> productInStores = context.ProductsInStore.ToList();
+			Stopwatch stopwatch = new();
+			stopwatch.Start();
+			context.ProductsInStore.RemoveRange(productInStores);
+			context.SaveChanges();
+			stopwatch.Stop();
+			Console.WriteLine($"Удаление завершено. Времени затрачено: {stopwatch.Elapsed.TotalMilliseconds} мс");
+		}
+		public static void TestReadByCount()
+		{
+			using Context context = new();
+			Random r = new();
+			int Count = r.Next(1000);
+			Stopwatch stopwatch = new();
+			stopwatch.Start();
+			var records = context.ProductsInStore.Where(x => x.Count == Count).ToList();
+			stopwatch.Stop();
+			Console.WriteLine($"Поиск по условию завершен. Времени затрачено: {stopwatch.Elapsed.TotalMilliseconds} мс");
 		}
 	}
 }

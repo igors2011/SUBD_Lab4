@@ -49,6 +49,13 @@
 					case "ТестУдалить":
 						DbWorker.Truncate();
 						break;
+					case "Тест":
+						DbWorker.TestCreate();
+						DbWorker.TestRead();
+						DbWorker.TestUpdate();
+						DbWorker.TestDelete();
+						DbWorker.TestReadByCount();
+						break;
 					default:
 						Console.WriteLine("Неверный ввод");
 						break;
